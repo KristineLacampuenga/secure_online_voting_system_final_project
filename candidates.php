@@ -1,5 +1,4 @@
 <?php
-// --- Database Setup ---
 $host = "fdb1028.awardspace.net";
 $dbname = "4640148_election";
 $username = "4640148_election";
@@ -32,7 +31,6 @@ $conn->close();
 </head>
 <body>
 
-<!-- ==== Slider Section ==== -->
 <div class="slider-container">
   <div class="slider-wrapper" id="slider-wrapper">
     <?php foreach ($candidates as $candidate): ?>
@@ -50,7 +48,6 @@ $conn->close();
   </div>
 </div>
 
-<!-- ==== Cards Section ==== -->
 <h2 class="section-title">Choose Candidates Wisely </h2>
 <div class="cards-container">
   <?php foreach ($candidates as $candidate): ?>
