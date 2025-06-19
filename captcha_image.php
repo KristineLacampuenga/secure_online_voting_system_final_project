@@ -7,9 +7,9 @@ $width = 150;
 $height = 50;
 $image = imagecreatetruecolor($width, $height);
 
-$bgColor = imagecolorallocate($image, 255, 255, 255);  // white
-$textColor = imagecolorallocate($image, 0, 0, 0);      // black
-$noiseColor = imagecolorallocate($image, 100, 120, 180); // bluish noise
+$bgColor = imagecolorallocate($image, 255, 255, 255);  
+$textColor = imagecolorallocate($image, 0, 0, 0);     
+$noiseColor = imagecolorallocate($image, 100, 120, 180); 
 
 imagefilledrectangle($image, 0, 0, $width, $height, $bgColor);
 
