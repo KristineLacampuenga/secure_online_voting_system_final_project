@@ -36,7 +36,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (!isset($_FILES['candidateImage']) || $_FILES['candidateImage']['error'] != 0) {
         $error_msg = "Please upload a valid image file.";
     } else {
-        // Check for duplicate candidate number
         $check_query = "SELECT * FROM candidate WHERE candidate_number = ?";
         $check_stmt = mysqli_prepare($conn, $check_query);
         mysqli_stmt_bind_param($check_stmt, "i", $candidateNumber);
@@ -59,7 +58,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $file_destination = "./uploads/" . $file_name;
 
                 if (move_uploaded_file($file_tmp, $file_destination)) {
-                    // Insert into DB
                     $insert_query = "INSERT INTO candidate (candidate_number, candidate_name, candidate_position, date_apply, partylist, candidate_image) VALUES (?, ?, ?, ?, ?, ?)";
                     $stmt = mysqli_prepare($conn, $insert_query);
                     if ($stmt) {
