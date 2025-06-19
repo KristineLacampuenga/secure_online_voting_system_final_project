@@ -7,14 +7,13 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-// Decryption function
 function decryptAES($data) {
     $secret_key = 'this_is_a_strong_secret_key_32bytes!';
     $cipher_method = 'AES-256-CBC';
 
     $decoded = base64_decode($data, true);
     if ($decoded === false || strlen($decoded) < 17) {
-        return $data; // Not encrypted or invalid
+        return $data;
     }
 
     $iv_length = openssl_cipher_iv_length($cipher_method);
@@ -165,10 +164,8 @@ function tallySingleColumn($conn, $title, $table, $column, $decrypt = false) {
     echo "</table>";
 }
 
-// Start the page
 startPage();
 
-// Tally positions
 tallyColumns($conn, "🗳️ Senator Tally", "senator", [
     "sen1", "sen2", "sen3", "sen4", "sen5", "sen6", 
     "sen7", "sen8", "sen9", "sen10", "sen11", "sen12"
@@ -184,7 +181,6 @@ tallySingleColumn($conn, "👔 Mayor Tally", "mayor", "candidate_name", $decrypt
 tallySingleColumn($conn, "👔 Vice Mayor Tally", "vice_mayor", "candidate_name", $decrypt);
 tallySingleColumn($conn, "🗳️ Partylist Tally", "partylist", "partylist", $decrypt);
 
-// Close and end
 $conn->close();
 endPage();
 ?>
