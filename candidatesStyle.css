@@ -19,7 +19,6 @@ h2.section-title {
   color: var(--sandy-brown-dark);
 }
 
-/* === Slider === */
 .slider-container {
   width: 100%;
   overflow: hidden;
@@ -45,7 +44,6 @@ h2.section-title {
   filter: brightness(0.65);
 }
 
-/* === Radiant Sandy Brown Transparent Overlay === */
 .slide::before {
   content: "";
   position: absolute;
@@ -59,7 +57,6 @@ h2.section-title {
   pointer-events: none;
 }
 
-/* === Animated Advertising Bronze Wave Light === */
 .slide::after {
   content: "";
   position: absolute;
@@ -79,7 +76,6 @@ h2.section-title {
   transform: skewX(-20deg);
 }
 
-/* Ensure caption is above overlays */
 .slide-caption {
   position: absolute;
   top: 50%;
@@ -116,18 +112,17 @@ h2.section-title {
 .psw {
   float: right;
   padding-top: 16px;
-  font-size: 16px; /* Increased for visibility */
-  color: #ffffff; /* Brighter color */
-  font-weight: bold; /* Emphasize the whole line */
+  font-size: 16px; 
+  color: #ffffff; 
+  font-weight: bold; 
 }
 
 .psw a {
-  color: #ffcc00; /* Bright accent color (e.g., yellow) */
-  text-decoration: underline; /* Helps stand out */
+  color: #ffcc00; 
+  text-decoration: underline;
   font-weight: bold;
 }
 
-/* === Candidate Cards === */
 .cards-container {
   display: flex;
   flex-wrap: wrap;
