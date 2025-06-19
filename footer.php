@@ -6,7 +6,7 @@
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       font-size: 14px;
       padding: 25px 20px;
-      margin-top: 50px; /* Adds space above the footer */
+      margin-top: 50px; 
       background-color: sandybrown;
       color: #fff;
       position: relative;
