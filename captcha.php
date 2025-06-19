@@ -70,6 +70,7 @@ $captcha = trim($_POST['captcha']);
 <?php
 if ($captcha != $_SESSION['captcha_answer']) {
     echo "<p class='error'>Invalid CAPTCHA!</p>";
+    echo '<a href="index.php">Go Back</a>';
 } else {
     $stmt = $conn->prepare("SELECT * FROM voters WHERE user_id = ?");
     $stmt->bind_param("s", $user_id);
@@ -88,9 +89,13 @@ if ($captcha != $_SESSION['captcha_answer']) {
             echo '<a href="otp_verification.php">Proceed to OTP Verification</a>';
         } else {
             echo "<p class='error'>Invalid password!</p>";
+            echo '<a href="index.php">Go Back</a>';
+
         }
     } else {
         echo "<p class='error'>Invalid credentials!</p>";
+        echo '<a href="index.php">Go Back</a>';
+
     }
 }
 $conn->close();
