@@ -140,9 +140,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     <button type="submit">Update Voter</button>
 </form>
+<p style="text-align: center; margin-top: 30px;">
+    <a href="tally.php" style="color: brown; font-weight: bold; text-decoration: none;">
+        📊 View Tally Results
+    </a>
+</p>
 
 <?php
-include 'tally.php';
 include 'footer.php';
 ?>
 
