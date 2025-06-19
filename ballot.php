@@ -10,7 +10,15 @@ include("header.php");
 $conn = new mysqli("fdb1028.awardspace.net", "4640148_election", "987+_voteWin2025", "4640148_election");
 if ($conn->connect_error) die("Connection failed: " . $conn->connect_error);
 
-// Fetch candidates by position
+function encryptAES($plaintext) {
+    $secret_key = 'this_is_a_strong_secret_key_32bytes!';
+    $cipher_method = 'AES-256-CBC';
+    $iv_length = openssl_cipher_iv_length($cipher_method);
+    $iv = openssl_random_pseudo_bytes($iv_length);
+    $encrypted = openssl_encrypt($plaintext, $cipher_method, $secret_key, OPENSSL_RAW_DATA, $iv);
+    return base64_encode($iv . $encrypted);
+}
+
 function getCandidates($position, $conn) {
     $stmt = $conn->prepare("SELECT candidate_name, candidate_number, partylist FROM candidate WHERE candidate_position = ?");
     $stmt->bind_param("s", $position);
@@ -82,17 +90,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $senatorVotes = [];
         for ($i = 1; $i <= 12; $i++) {
             $key = 'sen' . $i;
-            if (!empty($_POST[$key])) $senatorVotes[] = $_POST[$key];
+            if (!empty($_POST[$key])) $senatorVotes[] = encryptAES($_POST[$key]);
         }
 
-        $house = $_POST['house_rep'] ?? '';
-        $mayor = $_POST['mayor'] ?? '';
-        $viceMayor = $_POST['vice_mayor'] ?? '';
-        $partylistVotes = $_POST['partyList'] ?? '';
+        $house = encryptAES($_POST['house_rep'] ?? '');
+        $mayor = encryptAES($_POST['mayor'] ?? '');
+        $viceMayor = encryptAES($_POST['vice_mayor'] ?? '');
+        $partylistVotes = encryptAES($_POST['partyList'] ?? '');
         $cityCouncilor = [];
         for ($i = 1; $i <= 12; $i++) {
             $key = 'councilor' . $i;
-            if (!empty($_POST[$key])) $cityCouncilor[] = $_POST[$key];
+            if (!empty($_POST[$key])) $cityCouncilor[] = encryptAES($_POST[$key]);
         }
 
         $errors = [];
